@@ -1,30 +1,41 @@
 
 public class Snackaroo extends HungryLizardGame
 {
-	private Fly[][] flies; //creates array of flies 
-	
-	public Snackaroo(int rows, int columns)
+	private int x, y;
+    private boolean isEaten;
+
+    public Snackaroo(int startX, int startY) {
+        this.x = startX;
+        this.y = startY;
+        this.isEaten = false;
+    }
+
+    @Override
+    public void startGame() {
+        // Position flies in a grid
+    }
+
+    @Override
+    public void updateGameState() {
+        // Update fly behavior, check if eaten, etc.
+    }
+
+    @Override
+    public void endGame() {
+        // Remove fly if eaten
+    }
+
+	public boolean isEaten()
 	{
-		flies = new Fly[rows][columns];
-		spawnFlies();
+		// TODO Auto-generated method stub
+		return isEaten;
 	}
-	
-	public void spawnFlies()
+
+	public void setEaten(boolean eaten)
 	{
-		for (int row = 0; row < flies.length; row++)
-		{
-			for (int col = 0; col < flies[row].length; col++)
-			{
-			flies[row][col] = new Fly(col * 50, row * 50);
-			
-			}
-		}
+		// TODO Auto-generated method stub
+		isEaten = eaten;
 	}
-	
-	
-	public Snackaroo(int i, int j)
-	{
-		// TODO Auto-generated constructor stub
-	}
+
 
 }
