@@ -1,8 +1,93 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
-public class MainMenu extends UI
+public class MainMenu extends JFrame
 {
-	public void displayMenu() //displays menu
+	// fields
+	final int WINDOW_WIDTH = 200;
+	final int WINDOW_HEIGHT = 200;
+	private HungryLizardGame game;
+	
+	/**
+	 * Constructor for a MainMenu
+	 */
+	public MainMenu(HungryLizardGame game)
 	{
+		// new frame
+		JFrame frame = new JFrame("Main menu");
+		// window size
+		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		// set to end when the window is closed
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// lays out all components and resizes window
+		pack();
+		
+		/***********************************************************************/
+		
+		// adds border layout to the main JFrame
+		frame.setLayout(new BorderLayout()); 
+		
+		/***********************************************************************/
+		
+		// title //
+		
+		JPanel menuTitlePanel = new JPanel();
+		JLabel menuTitleLabel = new JLabel("Main menu");
+		menuTitlePanel.add(menuTitleLabel);
+		this.add(menuTitlePanel, BorderLayout.NORTH);
+		
+		/***********************************************************************/
+		
+		// buttons //
+		
+		// panel
+		JPanel menuButtonsPanel = new JPanel();
+		
+		// grid for button organization
+		GridLayout buttonGrid = new GridLayout(1, 3);
+		menuButtonsPanel.setLayout(buttonGrid);
+		
+		// three buttons to be added with action listeners
+		JButton playButton = new JButton("Play");
+		playButton.setPreferredSize(new Dimension(80, 80));
+		playButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// start main game here
+			}
+		});
+		
+		JButton exitButton = new JButton("Exit");
+		exitButton.setPreferredSize(new Dimension(80, 80));
+		exitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		
+		JButton optionsButton = new JButton("Options");
+		optionsButton.setPreferredSize(new Dimension(80, 80));
+		optionsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// open options menu
+			}
+		});
+		
+		// add buttons
+		menuButtonsPanel.add(playButton);
+		menuButtonsPanel.add(exitButton);
+		menuButtonsPanel.add(optionsButton);
+		
+		// display window
+		frame.setVisible(true);
+		
+				
 		
 	}
 	
