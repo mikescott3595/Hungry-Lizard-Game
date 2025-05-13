@@ -1,5 +1,5 @@
 
-public class UI extends HungryLizardGame
+public class UI extends HungryLizardView
 {
 
 }

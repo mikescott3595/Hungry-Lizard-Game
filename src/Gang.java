@@ -36,7 +36,6 @@ public class Gang extends HungryLizardGame
 	
 	public void setDead(boolean dead)
 	{
-		// TODO Auto-generated method stub
 		isDead = dead;
 	}
 
