@@ -1,4 +1,8 @@
-
+/**
+ * This is a Project called Hungry Lizard Game. It's based off of the game Galaga
+ * Authors: Michael Scott, Olivia Tom
+ * Date: 05/14/2025
+ */
 public abstract class HungryLizardGame
 {
 	private Lizard lizard;
@@ -16,7 +20,7 @@ public abstract class HungryLizardGame
 	    
 	   
 	
-	
+	//// Constructor ////
 	public HungryLizardGame()
 	{
 		lizard = new Lizard(hearts, hearts);
@@ -26,18 +30,30 @@ public abstract class HungryLizardGame
 		scoreboard = new ScoreBoard();
 	}
 	
+	/**
+	 *  resets the game takes the score and brings it back to zero
+	 *  returns hearts to 3
+	 */
 	 public void resetGame() {
 	        score = 0;
 	        hearts = 3;
 	        isGameOver = false;
 	    }
 	
-	 
+	 /**
+	  * updates the score
+	  * @param points 
+	  */
 	 public void updateScore(int points)
 	 {
 		 score += points;
 	 }
 	 
+	 
+	 /**
+	  * this method handles the damage. If your hearts are > than zero you can take damage 
+	  * if your hearts == 0 then it's gameover
+	  */
 	 public void takeDamage()
 	 {
 		 if (hearts > 0)
