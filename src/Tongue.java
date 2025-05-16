@@ -1,4 +1,8 @@
-
+/**
+ * This is a Project called Hungry Lizard Game. It's based off of the game Galaga
+ * Authors: Michael Scott, Olivia Tom
+ * Date: 05/14/2025
+ */
 public class Tongue extends Lizard
 {
 	private Boolean isTongueExtended;
@@ -19,7 +23,7 @@ public class Tongue extends Lizard
 		isTongueExtended = false;
 	}
 
-	    // method for eating flies and updating score
+	// method for eating flies and updating score
 	public void eatFly(Snackaroo snack) {
 		if (isTongueExtended && !snack.isEaten())
 		{

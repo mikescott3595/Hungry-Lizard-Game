@@ -1,9 +1,14 @@
+import java.awt.Rectangle;
 
 public class Lizard extends HungryLizardGame
 {
 	private int x, y;
 	private int speed;
+	private int width = 40;
+	private int height = 40;
 
+	
+	
 	public Lizard(int startX, int startY) {
 		super();
 		this.x = startX;
@@ -11,6 +16,11 @@ public class Lizard extends HungryLizardGame
 	    this.speed = 5;
 	    this.hearts = 3;
 	    }
+	
+	public Rectangle getBounds()
+	{
+		return new Rectangle(x, y, width, height);
+	}
 
 	public void moveLeft() {
 	    x -= speed;

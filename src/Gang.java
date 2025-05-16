@@ -1,26 +1,35 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * This is a Project called Hungry Lizard Game. It's based off of the game Galaga
+ * Authors: Michael Scott, Olivia Tom
+ * Date: 05/14/2025
+ */
 public class Gang extends HungryLizardGame
 {
-	private List<Gang> bee;
-	private boolean isDead;
+	private List<Bee> bees;
 	
 	 public Gang() {
-	        bee = new ArrayList<>();
+	        bees = new ArrayList<>();
+	        for (int i = 0; i < 5; i++)
+	        {
+	        	bees.add(new Bee(600 + i * 50, 100, 30, 30));
+	        }
 	 }
 	
 	public void moveGang(){
-		for (Gang bee : bee) {
-			bee.moveGang();
+		for (Bee bee : bees) {
+			bee.move();
 		}
 	}
 	
 	public void checkCollision(Lizard lizard)
 	{
-		for (Gang bee : bee)
+		for (Bee bee : bees)
 		{
-			if(bee.collidesWith(lizard))
+			if(!bee.isDead() && bee.collidesWith(lizard))
 			{
 				lizard.takeDamage();
 				bee.setDead(true);
@@ -29,14 +38,9 @@ public class Gang extends HungryLizardGame
 	}
 	
 
-	public boolean isDead()
+	public List<Bee> getBees()
 	{
-		return isDead;
-	}
-	
-	public void setDead(boolean dead)
-	{
-		isDead = dead;
+		return bees;
 	}
 
 	@Override
@@ -46,7 +50,7 @@ public class Gang extends HungryLizardGame
 
     @Override
     public void updateGameState() {
-        moveGang();
+ 
     }
 
     @Override
