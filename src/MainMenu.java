@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  * Authors: Michael Scott, Olivia Tom
  * Date: 05/14/2025
  */
-public class MainMenu extends JFrame
+public class MainMenu extends JFrame implements ActionListener
 {
 	// fields
 	final int WINDOW_WIDTH = 200;
@@ -55,39 +55,35 @@ public class MainMenu extends JFrame
 		
 		// panel
 		JPanel menuButtonsPanel = new JPanel();
-		menuButtonsPanel.setLayout(new GridLayout(1, 3));
+		menuButtonsPanel.setLayout(new GridLayout(3, 1));
 		// grid for button organization
 		//GridLayout buttonGrid = new GridLayout(1, 3); // commented this out for right now
 		//menuButtonsPanel.setLayout(buttonGrid); // commented this out for right now
+
 		
-		// three buttons to be added with action listeners
-		JButton playButton = new JButton("Play");
-		playButton.setPreferredSize(new Dimension(80, 80));
-		playButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// start main game here
-				startGame();
-			}
-		});
-		
+		// three buttons
+		JButton startButton = new JButton("Start");
+		startButton.setPreferredSize(new Dimension(80, 80));
+
 		JButton exitButton = new JButton("Exit");
 		exitButton.setPreferredSize(new Dimension(80, 80));
-		exitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+
 		
 		JButton optionsButton = new JButton("Options");
 		optionsButton.setPreferredSize(new Dimension(80, 80));
-		optionsButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// open options menu
-			}
-		});
+		
+		// listeners
+		startButton.addActionListener(this);
+		exitButton.addActionListener(this);
+		optionsButton.addActionListener(this);
+		
+		// action commands
+		startButton.setActionCommand("Start");
+		exitButton.setActionCommand("Exit");
+		optionsButton.setActionCommand("Options");
 		
 		// add buttons
-		menuButtonsPanel.add(playButton);
+		menuButtonsPanel.add(startButton);
 		menuButtonsPanel.add(exitButton);
 		menuButtonsPanel.add(optionsButton);
 		
@@ -100,9 +96,28 @@ public class MainMenu extends JFrame
 		
 	}
 	
-	public void startGame() //starts the game
+	public static void main(String[] args)
 	{
-		dispose();
-		GameFrame gameFrame = new GameFrame();
+		new MainMenu();
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) 
+	{
+		String command = e.getActionCommand();
+		
+		switch(command)
+		{
+			case "Start":
+				this.dispose(); // closes the menu
+				new GameFrame(); // launches the game
+				break;
+			case "Exit":
+				// do something
+			case "Options":
+				// do something
+		}
+	}
+	
+	
 }
