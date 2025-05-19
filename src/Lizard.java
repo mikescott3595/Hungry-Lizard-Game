@@ -29,6 +29,16 @@ public class Lizard extends HungryLizardGame
 	public void moveRight() {
 	    x += speed;
 	}
+	
+	public int getX()
+	{
+		return x;
+	}
+	
+	public int getY()
+	{
+		return y;
+	}
 
 	public void eatFly(Snackaroo snack) {
 	    if (!snack.isEaten()) {

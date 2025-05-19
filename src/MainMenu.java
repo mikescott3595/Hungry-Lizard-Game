@@ -18,26 +18,27 @@ public class MainMenu extends JFrame
 	// fields
 	final int WINDOW_WIDTH = 200;
 	final int WINDOW_HEIGHT = 200;
-	private HungryLizardGame game;
+	//private HungryLizardGame game;
 	
 	/**
 	 * Constructor for a MainMenu
 	 */
-	public MainMenu(HungryLizardGame game)
+	public MainMenu()
 	{
+		super("Hungry Lizard - Main Menu");
 		// new frame
-		JFrame frame = new JFrame("Main menu");
+		//JFrame frame = new JFrame("Main menu");
 		// window size
-		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		// set to end when the window is closed
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// lays out all components and resizes window
 		pack();
 		
 		/***********************************************************************/
 		
 		// adds border layout to the main JFrame
-		frame.setLayout(new BorderLayout()); 
+		setLayout(new BorderLayout()); 
 		
 		/***********************************************************************/
 		
@@ -54,10 +55,10 @@ public class MainMenu extends JFrame
 		
 		// panel
 		JPanel menuButtonsPanel = new JPanel();
-		
+		menuButtonsPanel.setLayout(new GridLayout(1, 3));
 		// grid for button organization
-		GridLayout buttonGrid = new GridLayout(1, 3);
-		menuButtonsPanel.setLayout(buttonGrid);
+		//GridLayout buttonGrid = new GridLayout(1, 3);
+		//menuButtonsPanel.setLayout(buttonGrid);
 		
 		// three buttons to be added with action listeners
 		JButton playButton = new JButton("Play");
@@ -65,6 +66,7 @@ public class MainMenu extends JFrame
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// start main game here
+				startGame();
 			}
 		});
 		
@@ -89,8 +91,10 @@ public class MainMenu extends JFrame
 		menuButtonsPanel.add(exitButton);
 		menuButtonsPanel.add(optionsButton);
 		
+		add(menuButtonsPanel, BorderLayout.CENTER);
+		
 		// display window
-		frame.setVisible(true);
+		setVisible(true);
 		
 				
 		
@@ -98,6 +102,7 @@ public class MainMenu extends JFrame
 	
 	public void startGame() //starts the game
 	{
-		
+		dispose();
+		GameFrame gameFrame = new GameFrame();
 	}
 }

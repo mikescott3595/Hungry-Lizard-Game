@@ -14,7 +14,7 @@ public abstract class HungryLizardGame
     protected int score;
     protected boolean isGameOver;
 	    
-	public abstract void startGame()
+	public abstract void startGame();
 	public abstract void updateGameState();
 	public abstract void endGame();
 	    
