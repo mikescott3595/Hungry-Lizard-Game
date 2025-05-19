@@ -18,7 +18,7 @@ public class MainMenu extends JFrame
 	// fields
 	final int WINDOW_WIDTH = 200;
 	final int WINDOW_HEIGHT = 200;
-	//private HungryLizardGame game;
+	//private HungryLizardGame game;  // commented this out for right now to test some things
 	
 	/**
 	 * Constructor for a MainMenu
@@ -27,7 +27,7 @@ public class MainMenu extends JFrame
 	{
 		super("Hungry Lizard - Main Menu");
 		// new frame
-		//JFrame frame = new JFrame("Main menu");
+		//JFrame frame = new JFrame("Main menu"); // commented this out for right now 
 		// window size
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		// set to end when the window is closed
@@ -57,8 +57,8 @@ public class MainMenu extends JFrame
 		JPanel menuButtonsPanel = new JPanel();
 		menuButtonsPanel.setLayout(new GridLayout(1, 3));
 		// grid for button organization
-		//GridLayout buttonGrid = new GridLayout(1, 3);
-		//menuButtonsPanel.setLayout(buttonGrid);
+		//GridLayout buttonGrid = new GridLayout(1, 3); // commented this out for right now
+		//menuButtonsPanel.setLayout(buttonGrid); // commented this out for right now
 		
 		// three buttons to be added with action listeners
 		JButton playButton = new JButton("Play");

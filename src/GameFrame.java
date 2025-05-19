@@ -7,7 +7,7 @@ import javax.swing.JFrame;
  * Date: 05/14/2025
  */
 public class GameFrame extends JFrame 
-	{
+	{ //still need to add to this but created this to be the game play gui
 	
 		// Game play GUI
 		public GameFrame()

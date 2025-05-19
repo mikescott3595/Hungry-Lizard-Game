@@ -10,6 +10,8 @@ import java.awt.event.*;
 
 public class GamePanel extends JPanel implements KeyListener
 {
+	// I created this to handle some of the stuff that happens within the game play gui which includes movement for lizard 
+	
 	//fields 
 	private Lizard lizard;
 	
