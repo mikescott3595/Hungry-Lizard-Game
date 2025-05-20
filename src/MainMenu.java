@@ -110,12 +110,22 @@ public class MainMenu extends JFrame implements ActionListener
 		{
 			case "Start":
 				this.dispose(); // closes the menu
-				new GameFrame(); // launches the game
+				JFrame gameFrame = new JFrame("Hungry Lizard Game");
+				GamePanel gamePanel = new GamePanel(); // launches the game
+				 gameFrame.add(gamePanel);
+		         gameFrame.setSize(800, 600);
+		         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		         gameFrame.setLocationRelativeTo(null);
+		         gameFrame.setVisible(true);
 				break;
 			case "Exit":
-				// do something
+				System.exit(0);
+				break;
+				
+				
 			case "Options":
-				// do something
+				JOptionPane.showMessageDialog(this, "Options coming soon!");
+	            break;
 		}
 	}
 	
