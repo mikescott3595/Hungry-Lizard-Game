@@ -14,13 +14,13 @@ public class GamePanel extends JPanel implements KeyListener
 	// gui which includes movement for lizard
 
 	// fields
-	private Lizard lizard;
+	private HungryLizardGame hungryLizardGame;
 	private Image lizardImage;
 
 	/// constructor///
-	public GamePanel()
+	public GamePanel(HungryLizardGame hungryLizardGame)
 	{
-		this.lizard = new Lizard(300, 500);
+		this.hungryLizardGame = hungryLizardGame;
 		lizardImage = new ImageIcon("lizard.png").getImage(); // imports our lizard
 		
 		setFocusable(true);
@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements KeyListener
 		super.paintComponent(g);
 		// Draw the lizard as a rectangle for now
 		g.setColor(Color.GREEN);
-		g.fillRect(lizard.getX(), lizard.getY(), 40, 40);
+		g.fillRect(hungryLizardGame.getLizard().getX(), hungryLizardGame.getLizard().getY(), 40, 40);
 	}
 
 	// KeyListener methods being able to move left and right
@@ -42,9 +42,9 @@ public class GamePanel extends JPanel implements KeyListener
 		int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_LEFT) {
-			lizard.moveLeft();
+			hungryLizardGame.getLizard().moveLeft();
 		} else if (key == KeyEvent.VK_RIGHT) {
-			lizard.moveRight();
+			hungryLizardGame.getLizard().moveRight();
 		}
 
 		repaint(); // Re-draw after moving

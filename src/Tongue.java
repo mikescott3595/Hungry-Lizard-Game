@@ -3,12 +3,11 @@
  * Authors: Michael Scott, Olivia Tom
  * Date: 05/14/2025
  */
-public class Tongue extends Lizard
+public class Tongue 
 {
 	private Boolean isTongueExtended;
 	
 	public Tongue(int startX, int startY) {
-		super(startX, startY);
 		this.isTongueExtended = false;
 	}
 	
@@ -27,7 +26,6 @@ public class Tongue extends Lizard
 	public void eatFly(Snackaroo snack) {
 		if (isTongueExtended && !snack.isEaten())
 		{
-			updateScore(15);
 			snack.setEaten(true);
 		}
 	        

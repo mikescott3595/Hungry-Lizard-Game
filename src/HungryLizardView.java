@@ -12,6 +12,5 @@ public class HungryLizardView
 	{
 		
 		SwingUtilities.invokeLater(() -> new MainMenu());
-		new GameFrame();
 	}
 }

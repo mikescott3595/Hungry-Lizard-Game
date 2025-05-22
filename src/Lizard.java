@@ -1,20 +1,22 @@
 import java.awt.Rectangle;
 
-public class Lizard extends HungryLizardGame
+public class Lizard
 {
 	private int x, y;
 	private int speed;
 	private int width = 40;
 	private int height = 40;
-
+	private int hearts;
+	private HungryLizardGame hungryLizardGame;
+	private Tongue tongue;
 	
 	
-	public Lizard(int startX, int startY) {
-		super();
+	public Lizard(int startX, int startY, HungryLizardGame hungryLizardGame) {
 		this.x = startX;
 	    this.y = startY;
 	    this.speed = 5;
 	    this.hearts = 3;
+	    this.hungryLizardGame = hungryLizardGame;
 	    }
 	
 	public Rectangle getBounds()
@@ -42,31 +44,15 @@ public class Lizard extends HungryLizardGame
 
 	public void eatFly(Snackaroo snack) {
 	    if (!snack.isEaten()) {
-	    	updateScore(10);
+	    	hungryLizardGame.updateScore(10);
 	    	snack.setEaten(true);
 	     }
 	}
 	
 	public void takeDamage()
 	{
-		super.takeDamage();
+		hungryLizardGame.takeDamage();
 	}
 
-	@Override
-	public void startGame() {
-	// Initialize or reset specific things for the lizard
-		this.x = 300;
-		this.y = 500; //test positions
-	}
-
-    @Override
-	 public void updateGameState() {
-	 // Update the lizard's state or check for collisions with bees or flies
-	 }
-
-	@Override
-	public void endGame() {
-    // Handle what happens when the game ends 
-	}
 }
 

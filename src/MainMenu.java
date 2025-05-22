@@ -18,7 +18,7 @@ public class MainMenu extends JFrame implements ActionListener
 	// fields
 	final int WINDOW_WIDTH = 200;
 	final int WINDOW_HEIGHT = 200;
-	//private HungryLizardGame game;  // commented this out for right now to test some things
+	private HungryLizardGame game;  // commented this out for right now to test some things
 	
 	/**
 	 * Constructor for a MainMenu
@@ -111,14 +111,14 @@ public class MainMenu extends JFrame implements ActionListener
 			case "Start":
 				this.dispose(); // closes the menu
 				JFrame gameFrame = new JFrame("Hungry Lizard Game");
-				GamePanel gamePanel = new GamePanel(); // launches the game
+				GamePanel gamePanel = new GamePanel(new HungryLizardGame()); // launches the game
 				 gameFrame.add(gamePanel);
 		         gameFrame.setSize(800, 600);
 		         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		         gameFrame.setLocationRelativeTo(null);
 		         gameFrame.setVisible(true);
 				break;
-			case "Exit":
+			case "Exit": //exits the game
 				System.exit(0);
 				break;
 				

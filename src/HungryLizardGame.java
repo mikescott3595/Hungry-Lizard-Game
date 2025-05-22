@@ -1,9 +1,11 @@
+import javax.swing.JComponent;
+
 /**
  * This is a Project called Hungry Lizard Game. It's based off of the game Galaga
  * Authors: Michael Scott, Olivia Tom
  * Date: 05/14/2025
  */
-public abstract class HungryLizardGame
+public class HungryLizardGame
 {
 	private Lizard lizard;
 	protected Gang gang; // bees
@@ -14,16 +16,25 @@ public abstract class HungryLizardGame
      protected int score;
      protected boolean isGameOver;
 	    
-	public abstract void startGame();
-	public abstract void updateGameState();
-	public abstract void endGame();
+	public  void startGame()
+	{
+		
+	}
+	public  void updateGameState()
+	{
+		
+	}
+	public  void endGame()
+	{
+		
+	}
 	    
 	   
 	
 	//// Constructor ////
 	public HungryLizardGame()
 	{
-		lizard = new Lizard(hearts, hearts);
+		lizard = new Lizard(hearts, hearts, this);
 		gang = new Gang();
 		snackaroo = new Snackaroo(5,5); //creates grid of flies that is 5x5
 		health = new Health();
@@ -66,6 +77,11 @@ public abstract class HungryLizardGame
 		 isGameOver = true;
 	  }
 	 }
+	public Lizard getLizard()
+	{
+		// TODO Auto-generated method stub
+		return lizard;
+	}
 }
 
 
