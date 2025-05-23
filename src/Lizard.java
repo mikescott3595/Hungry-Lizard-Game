@@ -4,8 +4,9 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class Lizard extends HungryLizardGame
+public class Lizard
 {
 	private int x, y;
 	private int speed;
@@ -23,14 +24,14 @@ public class Lizard extends HungryLizardGame
 	 */
 	public Lizard(int startX, int startY)
 	{
-		super();
+		//super();
 		this.x = startX;
 		this.y = startY;
 		this.speed = 5;
 		
 		lizardLabel = new JLabel(lizardImage);
-		lizardLabel.setLocation(startX, startY)
-		Health health = new Health(); // gives lizard health starting at 3 hearts
+		lizardLabel.setLocation(startX, startY);
+		this.health = new Health(); // gives lizard health starting at 3 hearts
 	}
 	
 	/**
