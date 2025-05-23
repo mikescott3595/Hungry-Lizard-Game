@@ -6,6 +6,7 @@
 public class Tongue extends Lizard
 {
 	private Boolean isTongueExtended;
+	private ImageIcon tongue = new ImageIcon("tongue.png");
 	
 	public Tongue(int startX, int startY) {
 		super(startX, startY);

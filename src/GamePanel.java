@@ -14,40 +14,57 @@ public class GamePanel extends JPanel implements KeyListener
 	// gui which includes movement for lizard
 
 	// fields
-	private Lizard lizard;
-	private Image lizardImage;
+	private Lizard lizard; // has-a lizard
 
-	/// constructor///
+	/**
+	 * Constructor for a GamePanel
+	 */
 	public GamePanel()
 	{
-		this.lizard = new Lizard(300, 500);
-		lizardImage = new ImageIcon("lizard.png").getImage(); // imports our lizard
-		
+		// panel that game will be in
+		JPanel gamePanel = new JPanel();
 		setFocusable(true);
 		addKeyListener(this);
 		requestFocusInWindow();
+		
+		// add lizard to game panel
+		Lizard lizard = new Lizard(400, 590);
+		gamePanel.add(lizard.getLizard());
+		
+		// add health to game panel
+		gamePanel.add(lizard.getHealthPanel());
 	}
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		// Draw the lizard as a rectangle for now
-		g.setColor(Color.GREEN);
-		g.fillRect(lizard.getX(), lizard.getY(), 40, 40);
-	}
+//	@Override
+//	protected void paintComponent(Graphics g) {
+//		super.paintComponent(g);
+//		// Draw the lizard as a rectangle for now
+//		g.setColor(Color.GREEN);
+//		g.fillRect(lizard.getX(), lizard.getY(), 40, 40);
+//	}
 
-	// KeyListener methods being able to move left and right
+	/**
+	 * Method that listens to keystrokes to move Lizard
+	 * @param e event object
+	 */
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e) 
+	{
 		int key = e.getKeyCode();
 
-		if (key == KeyEvent.VK_LEFT) {
-			lizard.moveLeft();
-		} else if (key == KeyEvent.VK_RIGHT) {
-			lizard.moveRight();
+		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) 
+		{
+			lizard.move(-5); // left
+		} 
+		else if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) 
+		{
+			lizard.move(5); // right
+		}
+		else if (key == KeyEvent.VK_SPACE)
+		{
+			lizard.eat(); // eat
 		}
 
-		repaint(); // Re-draw after moving
 	}
 
 	@Override
