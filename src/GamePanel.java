@@ -7,7 +7,7 @@ import javax.swing.*;
  * Date: 05/14/2025
  */
 
-public class GamePanel extends JPanel implements KeyListener
+public class GamePanel extends JPanel implements KeyListener 
 {
 	// I created this to handle some of the stuff that happens within the game play
 	// gui which includes movement for lizard

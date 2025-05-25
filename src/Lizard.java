@@ -44,6 +44,11 @@ public class Lizard
 		// updates x value in coordinate
 		lizardLabel.setLocation(current.x + dx, current.y);
 	}
+	
+	public Rectangle getBounds() {
+	    return new Rectangle(getLizard().getX(), getLizard().getY(), 40, 40); // add the size of the actual sprite
+	}
+
 
 	public void eat()
 	{
@@ -95,21 +100,27 @@ public class Lizard
 		return y;
 	}
 	
-	@Override
-	public void startGame() {
+	/// Getters ///
+	public Tongue getTongue()
+	{
+		return tongue;
+	}
+	
+	//@Override
+	//public void startGame() {
 	// Initialize or reset specific things for the lizard
-		this.x = 300;
-		this.y = 500; //test positions
-	}
-
-    @Override
-	 public void updateGameState() {
-	 // Update the lizard's state or check for collisions with bees or flies
-	 }
-
-	@Override
-	public void endGame() {
-    // Handle what happens when the game ends 
-	}
+//		this.x = 300;
+//		this.y = 500; //test positions
+//	}
+//
+//    @Override
+//	 public void updateGameState() {
+//	 // Update the lizard's state or check for collisions with bees or flies
+//	 }
+//
+//	@Override
+//	public void endGame() {
+//    // Handle what happens when the game ends 
+//	}
 }
 
