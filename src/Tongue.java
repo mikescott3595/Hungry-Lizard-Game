@@ -6,6 +6,7 @@
 public class Tongue 
 {
 	private Boolean isTongueExtended;
+	private ImageIcon tongue = new ImageIcon("tongue.png");
 	
 	public Tongue(int startX, int startY) {
 		this.isTongueExtended = false;

@@ -101,6 +101,10 @@ public class MainMenu extends JFrame implements ActionListener
 		new MainMenu();
 	}
 
+	/**
+	 * Method that listens to event objects
+	 * @param e event object
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -111,18 +115,18 @@ public class MainMenu extends JFrame implements ActionListener
 			case "Start":
 				this.dispose(); // closes the menu
 				JFrame gameFrame = new JFrame("Hungry Lizard Game");
-				GamePanel gamePanel = new GamePanel(new HungryLizardGame()); // launches the game
-				 gameFrame.add(gamePanel);
-		         gameFrame.setSize(800, 600);
-		         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		         gameFrame.setLocationRelativeTo(null);
-		         gameFrame.setVisible(true);
+				GamePanel gamePanel = new GamePanel(); // launches the game
+				gameFrame.add(gamePanel);
+		          gameFrame.setSize(800, 600);
+		          gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		          gameFrame.setLocationRelativeTo(null);
+		          gameFrame.setVisible(true);
 				break;
-			case "Exit": //exits the game
+				
+			case "Exit":
 				System.exit(0);
 				break;
-				
-				
+					
 			case "Options":
 				JOptionPane.showMessageDialog(this, "Options coming soon!");
 	            break;
