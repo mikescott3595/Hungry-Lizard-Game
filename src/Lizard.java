@@ -28,6 +28,7 @@ public class Lizard
 		this.x = startX;
 		this.y = startY;
 		this.speed = 5;
+		this.tongue = new Tongue(x,y);
 		
 		lizardLabel = new JLabel(lizardImage);
 		lizardLabel.setLocation(startX, startY);
@@ -52,7 +53,7 @@ public class Lizard
 
 	public void eat()
 	{
-		// call a method from Tongue class maybe called lick
+		tongue.extendedTongue(getX(), getY());
 	}
 	
 	/**

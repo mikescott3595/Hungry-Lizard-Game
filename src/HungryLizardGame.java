@@ -48,7 +48,7 @@ public class HungryLizardGame
 		
 		if (lizard.getTongue().isExtended()) // check if tongue has eaten flies
 		{
-			for (Fly fly : snackaroo.getAllFlies()) // need to create a Fly class like I did with the bees
+			for (Fly fly : snackaroo.getAllFlies())
 			{
 				if (lizard.getTongue().eatFly(fly))
 				{
@@ -77,7 +77,7 @@ public class HungryLizardGame
 	 public void updateScore(int points)
 	 {
 		 score += points;
-		 scoreboard.setScore(score); // need to work on set Score
+		 scoreboard.setScore(score); 
 	 }
 	 
 	/// Getters ///
