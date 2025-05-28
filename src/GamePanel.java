@@ -21,28 +21,33 @@ public class GamePanel extends JPanel implements KeyListener
 	 */
 	public GamePanel()
 	{
-		// panel that game will be in
-		JPanel gamePanel = new JPanel();
+		setLayout(null);
+		setPreferredSize(new Dimension(800, 600));
 		setFocusable(true);
 		addKeyListener(this);
 		requestFocusInWindow();
+
+		int startX = (getWidth() - 60) / 2; // center horizontally
+		int startY = getHeight() - 60 - 10; // 10px up from bottom
 		
 		// add lizard to game panel
-		Lizard lizard = new Lizard(400, 590);
-		gamePanel.add(lizard.getLizard());
-		
+		this.lizard = new Lizard(startX, startY);
+		JLabel lizLabel = lizard.getLizard();
+		lizLabel.setBounds(startX, startY, 60, 60);
+		add(lizLabel);
 		// add health to game panel
-		gamePanel.add(lizard.getHealthPanel());
+		JPanel hp = lizard.getHealthPanel();
+		hp.setBounds(10, 10, hp.getPreferredSize().width, hp.getPreferredSize().height);
+		    add(hp);
 	}
-
+	
 //	@Override
-//	protected void paintComponent(Graphics g) {
-//		super.paintComponent(g);
-//		// Draw the lizard as a rectangle for now
-//		g.setColor(Color.GREEN);
-//		g.fillRect(lizard.getX(), lizard.getY(), 40, 40);
+//	public void paintComponent(Graphics g) 
+//	{
+//	    super.paintComponent(g);
+//	    lizard.draw(g);
 //	}
-
+	    
 	/**
 	 * Method that listens to keystrokes to move Lizard
 	 * @param e event object

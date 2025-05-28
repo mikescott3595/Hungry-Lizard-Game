@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -14,6 +15,7 @@ public class Lizard
 	private int height = 40;
 	private ImageIcon lizardImage = new ImageIcon("lizard.png");
 	private JLabel lizardLabel;
+	private Image lizard;
 	private Health health; // has-a health
 	private Tongue tongue; // has-a tongue
 
@@ -28,11 +30,20 @@ public class Lizard
 		this.x = startX;
 		this.y = startY;
 		this.speed = 5;
-		
 		lizardLabel = new JLabel(lizardImage);
-		lizardLabel.setLocation(startX, startY);
+		// lizardLabel.setLocation(startX, startY);
+		// this.lizard = new ImageIcon("lizard.png").getImage();
 		this.health = new Health(); // gives lizard health starting at 3 hearts
 	}
+	
+//	/**
+//	 * Method that renders the lizard image
+//	 * @param g graphics
+//	 */
+//	public void draw(Graphics g)
+//	{
+//		g.drawImage(lizard, x, y, null);
+//	}
 	
 	/**
 	 * Method that moves the lizard
