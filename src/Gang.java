@@ -7,7 +7,7 @@ import java.util.List;
  * Authors: Michael Scott, Olivia Tom
  * Date: 05/14/2025
  */
-public class Gang extends HungryLizardGame
+public class Gang 
 {
 	private List<Bee> bees;
 	
@@ -43,18 +43,4 @@ public class Gang extends HungryLizardGame
 		return bees;
 	}
 
-	@Override
-	public void startGame() {
-        // Setup the bees
-    }
-
-    @Override
-    public void updateGameState() {
- 
-    }
-
-    @Override
-    public void endGame() {
-        // Check if the lizard collided with a bee, end the game if so
-    }
 }

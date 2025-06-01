@@ -18,7 +18,7 @@ public class MainMenu extends JFrame implements ActionListener
 	// fields
 	final int WINDOW_WIDTH = 200;
 	final int WINDOW_HEIGHT = 200;
-	//private HungryLizardGame game;  // commented this out for right now to test some things
+	private HungryLizardGame game;  // commented this out for right now to test some things
 	
 	/**
 	 * Constructor for a MainMenu

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  * Authors: Michael Scott, Olivia Tom
  * Date: 05/14/2025
  */
-public class Health extends JPanel
+public class Health extends JPanel 
 {
 	// fields
 	private int hearts; // keeps track of how many hearts there should be

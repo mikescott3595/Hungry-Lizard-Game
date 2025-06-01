@@ -1,4 +1,3 @@
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -15,7 +14,6 @@ public class Lizard
 	private int height = 40;
 	private ImageIcon lizardImage = new ImageIcon("lizard.png");
 	private JLabel lizardLabel;
-	private Image lizard;
 	private Health health; // has-a health
 	private Tongue tongue; // has-a tongue
 
@@ -30,20 +28,12 @@ public class Lizard
 		this.x = startX;
 		this.y = startY;
 		this.speed = 5;
+		this.tongue = new Tongue(x,y);
+		
 		lizardLabel = new JLabel(lizardImage);
-		// lizardLabel.setLocation(startX, startY);
-		// this.lizard = new ImageIcon("lizard.png").getImage();
+		lizardLabel.setLocation(startX, startY);
 		this.health = new Health(); // gives lizard health starting at 3 hearts
 	}
-	
-//	/**
-//	 * Method that renders the lizard image
-//	 * @param g graphics
-//	 */
-//	public void draw(Graphics g)
-//	{
-//		g.drawImage(lizard, x, y, null);
-//	}
 	
 	/**
 	 * Method that moves the lizard
@@ -55,10 +45,15 @@ public class Lizard
 		// updates x value in coordinate
 		lizardLabel.setLocation(current.x + dx, current.y);
 	}
+	
+	public Rectangle getBounds() {
+	    return new Rectangle(getLizard().getX(), getLizard().getY(), 40, 40); // add the size of the actual sprite
+	}
+
 
 	public void eat()
 	{
-		// call a method from Tongue class maybe called lick
+		tongue.extendedTongue(getX(), getY());
 	}
 	
 	/**
@@ -106,21 +101,27 @@ public class Lizard
 		return y;
 	}
 	
-	@Override
-	public void startGame() {
+	/// Getters ///
+	public Tongue getTongue()
+	{
+		return tongue;
+	}
+	
+	//@Override
+	//public void startGame() {
 	// Initialize or reset specific things for the lizard
-		this.x = 300;
-		this.y = 500; //test positions
-	}
-
-    @Override
-	 public void updateGameState() {
-	 // Update the lizard's state or check for collisions with bees or flies
-	 }
-
-	@Override
-	public void endGame() {
-    // Handle what happens when the game ends 
-	}
+//		this.x = 300;
+//		this.y = 500; //test positions
+//	}
+//
+//    @Override
+//	 public void updateGameState() {
+//	 // Update the lizard's state or check for collisions with bees or flies
+//	 }
+//
+//	@Override
+//	public void endGame() {
+//    // Handle what happens when the game ends 
+//	}
 }
 
