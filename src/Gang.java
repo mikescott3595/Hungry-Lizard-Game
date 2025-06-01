@@ -12,7 +12,7 @@ public class Gang
 	private List<Bee> bees;
 	
 	 public Gang() {
-	        bees = new ArrayList<>();
+	        bees = new ArrayList<>(); // array list of bees
 	        for (int i = 0; i < 5; i++)
 	        {
 	        	bees.add(new Bee(600 + i * 50, 100, 30, 30));

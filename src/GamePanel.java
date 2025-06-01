@@ -10,7 +10,7 @@ import javax.swing.*;
 public class GamePanel extends JPanel implements KeyListener 
 {
 	// I created this to handle some of the stuff that happens within the game play
-	// gui which includes movement for lizard
+	// GUI which includes movement for lizard
 
 	// fields
 	private Lizard lizard; // has-a lizard
@@ -21,17 +21,18 @@ public class GamePanel extends JPanel implements KeyListener
 	public GamePanel()
 	{
 		// panel that game will be in
-		JPanel gamePanel = new JPanel();
 		setFocusable(true);
 		addKeyListener(this);
 		requestFocusInWindow();
 		
+		
+		
 		// add lizard to game panel
 		Lizard lizard = new Lizard(400, 590);
-		gamePanel.add(lizard.getLizard());
+		this.add(lizard.getLizard());
 		
 		// add health to game panel
-		gamePanel.add(lizard.getHealthPanel());
+		this.add(lizard.getHealthPanel());
 	}
 
 //	@Override

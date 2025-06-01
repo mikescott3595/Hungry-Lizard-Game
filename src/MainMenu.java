@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 public class MainMenu extends JFrame implements ActionListener
 {
 	// fields
-	final int WINDOW_WIDTH = 200;
-	final int WINDOW_HEIGHT = 200;
+	final int WINDOW_WIDTH = 400;
+	final int WINDOW_HEIGHT = 400;
 	private HungryLizardGame game;  // commented this out for right now to test some things
 	
 	/**
@@ -33,6 +33,11 @@ public class MainMenu extends JFrame implements ActionListener
 		// set to end when the window is closed
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// lays out all components and resizes window
+		setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
+		setLayout(new BorderLayout()); 
+		setResizable(false); 
+		setLocationRelativeTo(null); // centers the window on screen
+		setVisible(true);
 		pack();
 		
 		/***********************************************************************/
@@ -63,14 +68,14 @@ public class MainMenu extends JFrame implements ActionListener
 		
 		// three buttons
 		JButton startButton = new JButton("Start");
-		startButton.setPreferredSize(new Dimension(80, 80));
+		startButton.setPreferredSize(new Dimension(40, 40));
 
 		JButton exitButton = new JButton("Exit");
-		exitButton.setPreferredSize(new Dimension(80, 80));
+		exitButton.setPreferredSize(new Dimension(40, 40));
 
 		
 		JButton optionsButton = new JButton("Options");
-		optionsButton.setPreferredSize(new Dimension(80, 80));
+		optionsButton.setPreferredSize(new Dimension(40, 40));
 		
 		// listeners
 		startButton.addActionListener(this);
@@ -128,7 +133,7 @@ public class MainMenu extends JFrame implements ActionListener
 				break;
 					
 			case "Options":
-				JOptionPane.showMessageDialog(this, "Options coming soon!");
+				JOptionPane.showMessageDialog(this, "Options menu coming soon!");
 	            break;
 		}
 	}
