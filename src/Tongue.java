@@ -13,12 +13,14 @@ public class Tongue
     private Rectangle bounds;
     private int x;
     private int y;
-    
-    public Tongue(int startX, int startY) {
+    private GamePanel gamePanel;
+
+    public Tongue(int startX, int startY, GamePanel panel) {
         this.isTongueExtended = false;
-        
-        this.bounds = new Rectangle(x,y - 40, 10, 40); // these are just tests we need to figure out how to have the tongue go up
+        this.bounds = new Rectangle(startX, startY - 40, 10, 40);
+        this.gamePanel = panel; // 💡 Store the reference to update score
     }
+
     
     
     public void extendedTongue(int lizardx, int lizardy)
@@ -42,6 +44,10 @@ public class Tongue
     public boolean eatFly(Fly fly) {
         if (isTongueExtended && !fly.isEaten() && bounds.intersects(fly.getBounds())) {
             fly.setEaten(true);
+            
+            if (gamePanel != null) {
+                gamePanel.increaseScore(10);
+            }
             return true;
         }
         return false;
