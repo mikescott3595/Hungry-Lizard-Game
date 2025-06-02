@@ -1,3 +1,7 @@
+import java.awt.AlphaComposite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,13 +22,11 @@ public class GamePanel extends JPanel implements KeyListener
     // fields
     private Lizard lizard; // has-a lizard
     private Gang gang;
-<<<<<<< HEAD
     private Snackaroo snackaroo;
-=======
     private int score;
     private JLabel scoreLabel;
+    private Image backgroundImage;
 
->>>>>>> branch 'main' of https://github.com/mikescott3595/Hungry-Lizard-Game.git
      
     /**
      * Constructor for a GamePanel
@@ -37,6 +39,11 @@ public class GamePanel extends JPanel implements KeyListener
         requestFocusInWindow();
         setLayout(null);
         
+        backgroundImage = new ImageIcon("dmv.png").getImage();
+        
+        MusicSound music = new MusicSound();
+        music.playLoop("Fushigi Ball Commercial music.wav");
+        
         // add lizard to game panel
         this.lizard = new Lizard(400, 550, this);
         this.add(lizard);
@@ -48,7 +55,7 @@ public class GamePanel extends JPanel implements KeyListener
         this.snackaroo = new Snackaroo();
         
      // Bee adding mechanism
-        Timer beeAdder = new Timer(100, new ActionListener() {
+        Timer beeAdder = new Timer(50, new ActionListener() {
             private int lastCount = 0;
 
             @Override
@@ -65,7 +72,14 @@ public class GamePanel extends JPanel implements KeyListener
         });
         beeAdder.start();
         
-<<<<<<< HEAD
+        
+        score = 0; // start at zero
+
+        scoreLabel = new JLabel("Score: " + score);
+        scoreLabel.setBounds(10, 10, 100, 30); // adjust size and position
+        this.add(scoreLabel);
+
+        
      // Fly adding mechanism
         Timer flyAdder = new Timer(100, new ActionListener() {
             private int lastCount = 0;
@@ -83,18 +97,34 @@ public class GamePanel extends JPanel implements KeyListener
             }
         });
         flyAdder.start();
-=======
+        
         score = 0; // start at zero
 
         scoreLabel = new JLabel("Score: " + score);
         scoreLabel.setBounds(10, 10, 100, 30); // adjust size and position
         this.add(scoreLabel);
 
->>>>>>> branch 'main' of https://github.com/mikescott3595/Hungry-Lizard-Game.git
         
         
     }
     
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (backgroundImage != null) {
+     	   Graphics2D g2d = (Graphics2D) g.create();
+
+             // Set transparency (0.0 = fully transparent, 1.0 = fully opaque)
+             float alpha = 0.3f;
+             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+
+             // Draw the image with transparency
+             g2d.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+
+             g2d.dispose(); // clean up
+        }
+    }
+
     /**
      * handles the score 
      * @param amount

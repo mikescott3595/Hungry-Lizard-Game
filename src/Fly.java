@@ -37,22 +37,22 @@ public class Fly extends JLabel
 		if (directionNumber == 0)
 		{
 			currDir = Direction.NORTH;
-			this.y += 7;
+			this.y += 20;
 		}
 		if (directionNumber == 1)
 		{
 			currDir = Direction.EAST;
-			this.x += 7;
+			this.x += 20;
 		}
 		if (directionNumber == 2)
 		{
 			currDir = Direction.SOUTH;
-			this.y -= 7;
+			this.y -= 20;
 		}
 		else
 		{
 			currDir = Direction.WEST;
-			this.x -= 10;
+			this.x -= 25;
 		}
 
 		this.setLocation(x, y);

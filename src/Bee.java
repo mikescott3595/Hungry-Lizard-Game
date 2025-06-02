@@ -47,22 +47,22 @@ public class Bee extends JLabel
 		if (directionNumber == 0)
 		{
 			currDir = Direction.NORTH;
-			this.y += 5;
+			this.y += 15;
 		}
 		if (directionNumber == 1)
 		{
 			currDir = Direction.EAST;
-			this.x += 5;
+			this.x += 15;
 		}
 		if (directionNumber == 2)
 		{
 			currDir = Direction.SOUTH;
-			this.y -= 5;
+			this.y -= 15;
 		}
 		else
 		{
 			currDir = Direction.WEST;
-			this.x -= 10;
+			this.x -= 20;
 		}
 
 		this.setLocation(x, y);
