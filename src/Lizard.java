@@ -15,19 +15,22 @@ public class Lizard extends JLabel
     private JLabel lizardLabel;
     private Health health; // has-a health
     private Tongue tongue; // has-a tongue
+    private GamePanel gamePanel;
+
 
     /**
      * Constructor for a Lizard
      * @param startX starting x coordinate for the Lizard
      * @param startY starting y coordinate for the Lizard
      */
-    public Lizard(int startX, int startY)
+    public Lizard(int startX, int startY, GamePanel panel)
     {
         //super();
         this.x = startX;
         this.y = startY;
         this.speed = 15;
-        this.tongue = new Tongue(x,y);
+        this.gamePanel =  panel;
+        this.tongue = new Tongue(x,y, gamePanel);
         this.setIcon(lizardImage);
         width = lizardImage.getIconWidth();
         height = lizardImage.getIconHeight();

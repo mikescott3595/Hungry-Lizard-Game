@@ -18,6 +18,9 @@ public class GamePanel extends JPanel implements KeyListener
     // fields
     private Lizard lizard; // has-a lizard
     private Gang gang;
+    private int score;
+    private JLabel scoreLabel;
+
      
     /**
      * Constructor for a GamePanel
@@ -31,7 +34,7 @@ public class GamePanel extends JPanel implements KeyListener
         setLayout(null);
         
         // add lizard to game panel
-        this.lizard = new Lizard(400, 550);
+        this.lizard = new Lizard(400, 550, this);
         this.add(lizard);
         
         // add health to game panel
@@ -57,8 +60,48 @@ public class GamePanel extends JPanel implements KeyListener
         });
         beeAdder.start();
         
+        score = 0; // start at zero
+
+        scoreLabel = new JLabel("Score: " + score);
+        scoreLabel.setBounds(10, 10, 100, 30); // adjust size and position
+        this.add(scoreLabel);
+
+        
         
     }
+    
+    /**
+     * handles the score 
+     * @param amount
+     */
+    public void increaseScore(int amount) {
+        score += amount;
+        scoreLabel.setText("Score: " + score);
+    }
+    
+ // Save score
+    public void saveScoreToFile() {
+        try (java.io.FileWriter writer = new java.io.FileWriter("score.txt")) {
+            writer.write(String.valueOf(score));
+            System.out.println("Score saved!");
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Load score
+    public void loadScoreFromFile() {
+        try (java.util.Scanner scanner = new java.util.Scanner(new java.io.File("score.txt"))) {
+            if (scanner.hasNextInt()) {
+                score = scanner.nextInt();
+                scoreLabel.setText("Score: " + score);
+                System.out.println("Score loaded!");
+            }
+        } catch (java.io.FileNotFoundException e) {
+            System.out.println("No previous score found.");
+        }
+    }
+
     
     /**
      * Method that listens to keystrokes to move Lizard
