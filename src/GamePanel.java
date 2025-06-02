@@ -80,7 +80,6 @@ public class GamePanel extends JPanel implements KeyListener
         });
         beeAdder.start();
         
-<<<<<<< HEAD
      // Fly adding mechanism
         Timer flyAdder = new Timer(100, new ActionListener() {
             private int lastCount = 0;

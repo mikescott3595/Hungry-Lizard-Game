@@ -49,16 +49,34 @@ public class Lizard extends JLabel
     	this.repaint();               // 3️⃣ repaint the component
     }
     
+    @Override
     public Rectangle getBounds() 
     {
-        return new Rectangle(getLizard().getX(), getLizard().getY(), 40, 40); // add the size of the actual sprite
+         return new Rectangle(x, y, width, height);
     }
 
+    
 
-    public void eat()
-    {
+
+    public void eat() {
         tongue.extendedTongue(getX(), getY());
+
+        new javax.swing.Timer(300, new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                tongue.retractedTongue();
+            }
+        }) {/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+		{
+            setRepeats(false);
+            start();
+        }};
     }
+
     
     /**
      * Method that updates the hearts in the health panel

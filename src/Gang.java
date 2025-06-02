@@ -45,11 +45,13 @@ public class Gang
 	{
 		for (Bee b : bees)
 		{
-			if(!bee.isDead() && bee.collidesWith(lizard))
+		
+			if (!b.isDead() && b.collidesWith(lizard))
 			{
-				lizard.takeDamage();
-				bee.setDead(true);
+			    lizard.takeDamage();
+			    b.setDead(true);
 			}
+
 		}
 	}
 	
@@ -68,3 +70,4 @@ public class Gang
     
 
 }
+

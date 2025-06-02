@@ -13,6 +13,8 @@ public class Tongue extends JLabel
     private int x;
     private int y;
     private GamePanel gamePanel;
+    private boolean hasAlreadyHit = false;
+
 
     public Tongue(int startX, int startY, GamePanel panel) {
         this.isTongueExtended = false;
@@ -28,18 +30,25 @@ public class Tongue extends JLabel
 
     public void extendedTongue(int lizardx, int lizardy)
     {
-    	isTongueExtended = true;
+        isTongueExtended = true;
         this.x = lizardx;
         this.y = lizardy;
+        hasAlreadyHit = false; 
 
-        int tongueX = x + (40 / 2) - (10 / 2); 
-        int tongueY = y - 10; 
+        
+        int tongueX = x + (40 / 2) - (10 / 2);
 
-        bounds.setLocation(tongueX, tongueY);
-        this.setLocation(tongueX, tongueY);
+       
+        int tongueHeight = 550; 
+        int tongueY = y - tongueHeight + 40; 
+
+      
+        bounds.setBounds(tongueX, tongueY, 10, tongueHeight);
+        this.setBounds(tongueX, tongueY, 10, tongueHeight);
 
         this.setVisible(true);
-        System.out.println("Tongue positioned at: " + tongueX + ", " + tongueY);
+
+        System.out.println("Tongue positioned at: " + tongueX + ", " + tongueY + ", height: " + tongueHeight);
     }
 
     public void retractedTongue()
@@ -66,11 +75,14 @@ public class Tongue extends JLabel
     }
 
     public void checkBeeCollision(List<Bee> bees) {
-        if (isTongueExtended) {
+        if (isTongueExtended && !hasAlreadyHit) {
             for (Bee bee : bees) {
                 if (bounds.intersects(bee.getBounds())) {
                     if (gamePanel != null && gamePanel.getLizard() != null) {
                         gamePanel.getLizard().takeDamage();
+                        gamePanel.checkGameOver();
+                        bee.setHasDamaged(true);
+                        hasAlreadyHit = true;
                         System.out.println("Ouch! The lizard took damage!");
                     }
                 }
