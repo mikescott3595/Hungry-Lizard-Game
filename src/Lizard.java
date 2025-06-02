@@ -26,7 +26,7 @@ public class Lizard extends JLabel
         //super();
         this.x = startX;
         this.y = startY;
-        this.speed = 5;
+        this.speed = 15;
         this.tongue = new Tongue(x,y);
         this.setIcon(lizardImage);
         width = lizardImage.getIconWidth();
@@ -39,10 +39,11 @@ public class Lizard extends JLabel
      * Method that moves the lizard
      * @param dx where the lizard will move in the x direction
      */
-    public void move(int dx)
+    public void move(int dx) 
     {
-        this.setLocation(x + dx, y);
-        this.repaint();
+    	x += dx;                      // 1️⃣ update x position
+    	this.setLocation(x, y);       // 2️⃣ update JLabel position
+    	this.repaint();               // 3️⃣ repaint the component
     }
     
     public Rectangle getBounds() 
@@ -89,6 +90,11 @@ public class Lizard extends JLabel
     public JLabel getLizard()
     {
         return lizardLabel;
+    }
+    
+    public int getSpeed()
+    {
+    	return speed;
     }
     
     public int getX()

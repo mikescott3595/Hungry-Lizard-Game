@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements KeyListener
     // fields
     private Lizard lizard; // has-a lizard
     private Gang gang;
-    
+     
     /**
      * Constructor for a GamePanel
      */
@@ -67,22 +67,28 @@ public class GamePanel extends JPanel implements KeyListener
     @Override
     public void keyPressed(KeyEvent e) 
     {
-        int key = e.getKeyCode();
 
+        int key = e.getKeyCode();
+        System.out.println("Key pressed: " + key);
+
+
+        // Move left
         if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) 
         {
-            lizard.move(-5); // left
+            lizard.move(-lizard.getSpeed());
         } 
+        // Move right
         else if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) 
         {
-            lizard.move(5); // right
-        }
-        else if (key == KeyEvent.VK_SPACE)
+            lizard.move(lizard.getSpeed());
+        } 
+        // Fire the tongue
+        else if (key == KeyEvent.VK_SPACE) 
         {
-            lizard.eat(); // eat
+            lizard.eat(); // Extend the tongue
         }
-
     }
+
 
     @Override
     public void keyReleased(KeyEvent e) {
