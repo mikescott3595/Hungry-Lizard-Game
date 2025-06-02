@@ -43,7 +43,7 @@ public class Bee extends JLabel
 	public void move()
 	{
 		int directionNumber = rand.nextInt(4);
-		
+		 
 		if (directionNumber == 0)
 		{
 			currDir = Direction.NORTH;
