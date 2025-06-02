@@ -1,4 +1,7 @@
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Random;
+
 import javax.swing.*;
 
 /**
@@ -9,69 +12,70 @@ import javax.swing.*;
 
 public class GamePanel extends JPanel implements KeyListener 
 {
-	// I created this to handle some of the stuff that happens within the game play
-	// GUI which includes movement for lizard
+    // I created this to handle some of the stuff that happens within the game play
+    // GUI which includes movement for lizard
 
-	// fields
-	private Lizard lizard; // has-a lizard
+    // fields
+    private Lizard lizard; // has-a lizard
+    private Gang gang;
+    
+    /**
+     * Constructor for a GamePanel
+     */
+    public GamePanel()
+    {
+        // panel that game will be in
+        setFocusable(true);
+        addKeyListener(this);
+        requestFocusInWindow();
+        setLayout(null);
+        
+        // add lizard to game panel
+        this.lizard = new Lizard(400, 590);
+        this.add(lizard.getLizard());
+        
+        // add health to game panel
+        this.add(lizard.getHealthPanel());
+        
+        gang = new Gang();
+        
+        if (gang.getBeeCount() > 0)
+        {
+     	   this.add(gang.getBee());
+        }
+        
+        
+    }
 
-	/**
-	 * Constructor for a GamePanel
-	 */
-	public GamePanel()
-	{
-		// panel that game will be in
-		setFocusable(true);
-		addKeyListener(this);
-		requestFocusInWindow();
-		
-		
-		
-		// add lizard to game panel
-		Lizard lizard = new Lizard(400, 590);
-		this.add(lizard.getLizard());
-		
-		// add health to game panel
-		this.add(lizard.getHealthPanel());
-	}
+    /**
+     * Method that listens to keystrokes to move Lizard
+     * @param e event object
+     */
+    @Override
+    public void keyPressed(KeyEvent e) 
+    {
+        int key = e.getKeyCode();
 
-//	@Override
-//	protected void paintComponent(Graphics g) {
-//		super.paintComponent(g);
-//		// Draw the lizard as a rectangle for now
-//		g.setColor(Color.GREEN);
-//		g.fillRect(lizard.getX(), lizard.getY(), 40, 40);
-//	}
+        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) 
+        {
+            lizard.move(-5); // left
+        } 
+        else if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) 
+        {
+            lizard.move(5); // right
+        }
+        else if (key == KeyEvent.VK_SPACE)
+        {
+            lizard.eat(); // eat
+        }
 
-	/**
-	 * Method that listens to keystrokes to move Lizard
-	 * @param e event object
-	 */
-	@Override
-	public void keyPressed(KeyEvent e) 
-	{
-		int key = e.getKeyCode();
+    }
 
-		if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) 
-		{
-			lizard.move(-5); // left
-		} 
-		else if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) 
-		{
-			lizard.move(5); // right
-		}
-		else if (key == KeyEvent.VK_SPACE)
-		{
-			lizard.eat(); // eat
-		}
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
 
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
 }

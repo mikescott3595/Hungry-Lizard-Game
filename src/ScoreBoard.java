@@ -53,4 +53,3 @@ public class ScoreBoard {
         return scorePanel;
     }
 }
-

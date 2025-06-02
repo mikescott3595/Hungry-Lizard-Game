@@ -3,9 +3,9 @@ import java.util.List;
 
 public class Snackaroo
 {
-	private Fly[][] flies;
-	private int rows;
-	private int col;
+    private Fly[][] flies;
+    private int rows;
+    private int col;
 
     /**
      * Constructor for Snackaroo
@@ -57,6 +57,3 @@ public class Snackaroo
         return true;
     }
 }
-
-
-
