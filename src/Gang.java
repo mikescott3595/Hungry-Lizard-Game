@@ -23,8 +23,8 @@ public class Gang
 	 public Gang() 
 	 {
 		 makeBees();
-		   Timer t = new Timer(100, e -> makeBees());
-		    t.setRepeats(false);
+		   Timer t = new Timer(1000, e -> makeBees());
+		    t.setRepeats(true);
 		    t.start();
 	        beeCounter = 0;
 	
@@ -33,20 +33,20 @@ public class Gang
 	 public void makeBees()
 	    {
 	        
-		    b = new Bee(700, random.nextInt(500  - 0 + 1));
+		    b = new Bee(800, random.nextInt(400  - 0 + 1));
 		    bees.add(b);
-		    moveBees();
+		    b.move();
 		    beeCounter++;
 
 	    }
 	 
-	 public void moveBees()
-	    {
-		    for (int i = 0; i < bees.size(); i++)
-		    {
-			    bees.get(i).move();
-		    }
-	    }
+//	 public void moveBees()
+//	    {
+//		    for (int i = 0; i < bees.size(); i++)
+//		    {
+//			    bees.get(i).move();
+//		    }
+//	    }
 
 	public void checkCollision(Lizard lizard)
 	{

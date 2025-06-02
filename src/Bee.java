@@ -35,7 +35,6 @@ public class Bee extends JLabel
 		this.setBounds(x, y, width, height);
 		this.isDead = false;
 		this.currDir = Direction.WEST; // default direction
-		move();
 	}
 	
 	
