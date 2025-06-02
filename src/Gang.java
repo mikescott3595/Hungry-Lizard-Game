@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 
 /**
@@ -7,24 +12,40 @@ import java.util.List;
  * Authors: Michael Scott, Olivia Tom
  * Date: 05/14/2025
  */
-public class Gang 
+public class Gang
 {
-	private List<Bee> bees;
+	private ArrayList<Bee> bees = new ArrayList<Bee>(); // has bees
+	Random random = new Random();
+	    private Timer beeSpawnTimer;
+	    private int index; // for arraylist iteration
+	    private int beeCounter;
 	
-	 public Gang() {
-	        bees = new ArrayList<>();
-	        for (int i = 0; i < 5; i++)
-	        {
-	        	bees.add(new Bee(600 + i * 50, 100, 30, 30));
-	        }
+	 public Gang() 
+	 {
+		 makeBees(); // spawn one bee immediately
+		// Spawn bees every 2 seconds
+	        beeSpawnTimer = new Timer(2000, e -> makeBees());
+	        beeSpawnTimer.start();
+	        beeCounter = 0;
+	
 	 }
-	
-	public void moveGang(){
-		for (Bee bee : bees) {
-			bee.move();
-		}
-	}
-	
+	 
+	 public void makeBees()
+	    {
+		    Bee b = new Bee(700, random.nextInt(500  - 0 + 1));
+		    bees.add(b);
+		    moveBees();
+		    beeCounter++;
+	    }
+	 
+	 public void moveBees()
+	    {
+		    for (int i = 0; i < bees.size(); i++)
+		    {    
+			    bees.get(index).move();
+		    }
+	    }
+
 	public void checkCollision(Lizard lizard)
 	{
 		for (Bee bee : bees)
@@ -38,9 +59,15 @@ public class Gang
 	}
 	
 
-	public List<Bee> getBees()
+	public JLabel getBee()
 	{
-		return bees;
+		
+		return this.bees.get(beeCounter);
+	}
+	
+	public int getBeeCount()
+	{
+		return beeCounter;
 	}
 
 }
