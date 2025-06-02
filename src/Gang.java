@@ -16,39 +16,41 @@ public class Gang
 {
 	private ArrayList<Bee> bees = new ArrayList<Bee>(); // has bees
 	Random random = new Random();
-	    private Timer beeSpawnTimer;
-	    private int index; // for arraylist iteration
-	    private int beeCounter;
+	 private Timer beeSpawnTimer;
+	 private int beeCounter;
+	 private Bee b;
 	
 	 public Gang() 
 	 {
-		 makeBees(); // spawn one bee immediately
-		// Spawn bees every 2 seconds
-	        beeSpawnTimer = new Timer(2000, e -> makeBees());
-	        beeSpawnTimer.start();
+		 makeBees();
+		   Timer t = new Timer(100, e -> makeBees());
+		    t.setRepeats(false);
+		    t.start();
 	        beeCounter = 0;
 	
 	 }
 	 
 	 public void makeBees()
 	    {
-		    Bee b = new Bee(700, random.nextInt(500  - 0 + 1));
+	        
+		    b = new Bee(700, random.nextInt(500  - 0 + 1));
 		    bees.add(b);
 		    moveBees();
 		    beeCounter++;
+
 	    }
 	 
 	 public void moveBees()
 	    {
 		    for (int i = 0; i < bees.size(); i++)
-		    {    
-			    bees.get(index).move();
+		    {
+			    bees.get(i).move();
 		    }
 	    }
 
 	public void checkCollision(Lizard lizard)
 	{
-		for (Bee bee : bees)
+		for (Bee b : bees)
 		{
 			if(!bee.isDead() && bee.collidesWith(lizard))
 			{
@@ -59,10 +61,10 @@ public class Gang
 	}
 	
 
-	public JLabel getBee()
+	public ArrayList<Bee> getBees()
 	{
 		
-		return this.bees.get(beeCounter);
+		return bees;
 	}
 	
 	public int getBeeCount()

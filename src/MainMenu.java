@@ -196,7 +196,7 @@ public class MainMenu extends JFrame implements ActionListener
 
 			gameFrame.add(gamePanel);
 
-			gameFrame.setSize(800, 600);
+			gameFrame.setSize(900, 700);
 
 			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

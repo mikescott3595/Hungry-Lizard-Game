@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import java.util.List;
 import java.util.Random;
@@ -15,27 +16,26 @@ public class Bee extends JLabel
 {
 	private int x, y;
 	private boolean isDead;
-	private ImageIcon beeImage;
+	private ImageIcon beeImage = new ImageIcon("bee.png");;
 	private int moveCount;
 	private Direction currDir;
 	JLabel label;
 	Random rand = new Random();
+	private int width;
+	private int height;
 	
 	///Constructors///
 	public Bee(int x, int y)
 	{
-		beeImage = new ImageIcon("bee.png");
-		label = new JLabel(beeImage);
-		label.setBounds(x, y, beeImage.getIconWidth(), beeImage.getIconHeight());
-		this.setLayout(null);
-		this.setBounds(x, y, beeImage.getIconWidth(), beeImage.getIconHeight()); // Ensures bee JPanel has correct bounds
-	     this.add(label);
-		
+		width = beeImage.getIconWidth();
+		height = beeImage.getIconHeight();
 		this.x = x;
 		this.y = y;
+		this.setIcon(beeImage);
+		this.setBounds(x, y, width, height);
 		this.isDead = false;
-		this.currDir = Direction.WEST; // defsult direction
-		this.repaint();
+		this.currDir = Direction.WEST; // default direction
+		move();
 	}
 	
 	
@@ -67,8 +67,19 @@ public class Bee extends JLabel
 			this.x -= 10;
 		}
 
-		label.setLocation(x, y);
-		label.repaint();
+		this.setLocation(x, y);
+		this.repaint();
+		
+		if (x < 800)
+		{
+			Timer t = new Timer(100, e -> move());
+			t.setRepeats(false);
+			t.start();
+		}
+		else
+		{
+			setVisible(false);
+		}
 	}
 	
 	public boolean collidesWith(Lizard lizard)
@@ -86,10 +97,10 @@ public class Bee extends JLabel
 		isDead = dead;
 	}
 	
-//	public Rectangle getBounds()
-//	{
-//		return new Rectangle(x, y, width, height);
-//	}
+	public Rectangle getBounds()
+	{
+		return new Rectangle(x, y, width, height);
+	}
 	
 	public int getX() 
 	{ 

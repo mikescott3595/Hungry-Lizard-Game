@@ -31,22 +31,35 @@ public class GamePanel extends JPanel implements KeyListener
         setLayout(null);
         
         // add lizard to game panel
-        this.lizard = new Lizard(400, 590);
-        this.add(lizard.getLizard());
+        this.lizard = new Lizard(400, 550);
+        this.add(lizard);
         
         // add health to game panel
         this.add(lizard.getHealthPanel());
         
-        gang = new Gang();
+        this.gang = new Gang();
         
-        if (gang.getBeeCount() > 0)
-        {
-     	   this.add(gang.getBee());
-        }
+     // Bee adding mechanism
+        Timer beeAdder = new Timer(50, new ActionListener() {
+            private int lastCount = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Bee> currentBees = gang.getBees();
+                while (lastCount < currentBees.size()) {
+                    add(currentBees.get(lastCount));
+                    lastCount++;
+                    repaint();
+                }
+                revalidate(); // make sure Swing re-lays out components
+                repaint();
+            }
+        });
+        beeAdder.start();
         
         
     }
-
+    
     /**
      * Method that listens to keystrokes to move Lizard
      * @param e event object

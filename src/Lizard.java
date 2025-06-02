@@ -9,8 +9,8 @@ public class Lizard extends JLabel
 {
     private int x, y;
     private int speed;
-    private int width = 40;
-    private int height = 40;
+    private int width;
+    private int height;
     private ImageIcon lizardImage = new ImageIcon("lizard.png");
     private JLabel lizardLabel;
     private Health health; // has-a health
@@ -28,10 +28,10 @@ public class Lizard extends JLabel
         this.y = startY;
         this.speed = 5;
         this.tongue = new Tongue(x,y);
-        
-        lizardLabel = new JLabel(lizardImage);
-        this.setBounds(x, y, lizardImage.getIconWidth(), lizardImage.getIconHeight());
-        lizardLabel.setLocation(startX, startY);
+        this.setIcon(lizardImage);
+        width = lizardImage.getIconWidth();
+        height = lizardImage.getIconHeight();
+        this.setBounds(x, y, width, height);
         this.health = new Health(); // gives lizard health starting at 3 hearts
     }
     
@@ -41,12 +41,12 @@ public class Lizard extends JLabel
      */
     public void move(int dx)
     {
-        Point current = lizardLabel.getLocation();
-        // updates x value in coordinate
-        lizardLabel.setLocation(current.x + dx, current.y);
+        this.setLocation(x + dx, y);
+        this.repaint();
     }
     
-    public Rectangle getBounds() {
+    public Rectangle getBounds() 
+    {
         return new Rectangle(getLizard().getX(), getLizard().getY(), 40, 40); // add the size of the actual sprite
     }
 
