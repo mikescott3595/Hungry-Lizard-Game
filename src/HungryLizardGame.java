@@ -19,7 +19,7 @@ public class HungryLizardGame
     
     public  void startGame()
     {
-        
+        ;
     }
     public  void endGame()
     {
@@ -81,12 +81,6 @@ public class HungryLizardGame
      {
          score += points;
          scoreboard.setScore(score); 
-     }
-     
-     public void makeBees()
-     {
-     	Bee b = new Bee(800, random.nextInt(600 - 0 + 1), 40, 40);
-     	bees.add(b);
      }
      
     /// Getters ///

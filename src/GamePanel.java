@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements KeyListener
     // fields
     private Lizard lizard; // has-a lizard
     private Gang gang;
+    private Snackaroo snackaroo;
      
     /**
      * Constructor for a GamePanel
@@ -38,9 +39,10 @@ public class GamePanel extends JPanel implements KeyListener
         this.add(lizard.getHealthPanel());
         
         this.gang = new Gang();
+        this.snackaroo = new Snackaroo();
         
      // Bee adding mechanism
-        Timer beeAdder = new Timer(50, new ActionListener() {
+        Timer beeAdder = new Timer(100, new ActionListener() {
             private int lastCount = 0;
 
             @Override
@@ -56,6 +58,24 @@ public class GamePanel extends JPanel implements KeyListener
             }
         });
         beeAdder.start();
+        
+     // Fly adding mechanism
+        Timer flyAdder = new Timer(100, new ActionListener() {
+            private int lastCount = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Fly> currentFlies = snackaroo.getFlies();
+                while (lastCount < currentFlies.size()) {
+                    add(currentFlies.get(lastCount));
+                    lastCount++;
+                    repaint();
+                }
+                revalidate(); // make sure Swing re-lays out components
+                repaint();
+            }
+        });
+        flyAdder.start();
         
         
     }

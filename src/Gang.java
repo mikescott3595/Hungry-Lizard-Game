@@ -16,7 +16,6 @@ public class Gang
 {
 	private ArrayList<Bee> bees = new ArrayList<Bee>(); // has bees
 	Random random = new Random();
-	 private Timer beeSpawnTimer;
 	 private int beeCounter;
 	 private Bee b;
 	
@@ -40,13 +39,7 @@ public class Gang
 
 	    }
 	 
-//	 public void moveBees()
-//	    {
-//		    for (int i = 0; i < bees.size(); i++)
-//		    {
-//			    bees.get(i).move();
-//		    }
-//	    }
+
 
 	public void checkCollision(Lizard lizard)
 	{

@@ -21,8 +21,7 @@ public class Bee extends JLabel
 	private Direction currDir;
 	JLabel label;
 	Random rand = new Random();
-	private int width;
-	private int height;
+	private int width, height;
 	
 	///Constructors///
 	public Bee(int x, int y)
