@@ -30,8 +30,7 @@ public class Lizard extends JLabel
         this.y = startY;
         this.speed = 15;
         this.gamePanel =  panel;
-        this.tongue = new Tongue(x,y);
-        panel.add(tongue);
+        this.tongue = new Tongue(x,y, gamePanel);
         this.setIcon(lizardImage);
         width = lizardImage.getIconWidth();
         height = lizardImage.getIconHeight();
@@ -46,21 +45,38 @@ public class Lizard extends JLabel
     public void move(int dx) 
     {
     	x += dx;                      // 1️⃣ update x position
-    	this.setLocation(x, y); 
-    	this.tongue.setTongueLocation(x,y);// 2️⃣ update JLabel position
+    	this.setLocation(x, y);       // 2️⃣ update JLabel position
     	this.repaint();               // 3️⃣ repaint the component
     }
     
+    @Override
     public Rectangle getBounds() 
     {
-        return new Rectangle(getLizard().getX(), getLizard().getY(), 40, 40); // add the size of the actual sprite
+         return new Rectangle(x, y, width, height);
     }
 
+    
 
-    public void eat()
-    {
+
+    public void eat() {
         tongue.extendedTongue(getX(), getY());
+
+        new javax.swing.Timer(300, new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                tongue.retractedTongue();
+            }
+        }) {/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+		{
+            setRepeats(false);
+            start();
+        }};
     }
+
     
     /**
      * Method that updates the hearts in the health panel

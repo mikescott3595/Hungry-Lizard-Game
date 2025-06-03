@@ -10,7 +10,7 @@ public class Fly extends JLabel
     private int x, y;
     private int width, height;
     private boolean isEaten;
-    private ImageIcon flyImage = new ImageIcon("fly.png");;
+    private ImageIcon flyImage = new ImageIcon("fly.png");; 
     private Direction currDir;
     Random rand = new Random();
 
@@ -75,10 +75,10 @@ public class Fly extends JLabel
     }
 
 
-    public void setEaten(boolean eaten) {
-        this.isEaten = eaten;
-        this.setVisible(!eaten);
-    }
+//    public void setEaten(boolean eaten) {
+//        this.isEaten = eaten;
+//        flyLabel.setVisible(!eaten);
+//    }
 
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
@@ -87,5 +87,13 @@ public class Fly extends JLabel
 
     public int getX() { return x; }
     public int getY() { return y; }
+
+
+    public void setEaten(boolean eaten)
+    {
+        this.isEaten = eaten;      // Store the eaten state
+        this.setVisible(!eaten);   // Hide the fly if it’s eaten
+    }
+
 }
 

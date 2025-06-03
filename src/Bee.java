@@ -43,13 +43,13 @@ public class Bee extends JLabel
 	public void move()
 	{
 		int directionNumber = rand.nextInt(4);
-		
+		 
 		if (directionNumber == 0)
 		{
 			currDir = Direction.NORTH;
 			this.y += 15;
 		}
-		if (directionNumber == 1)
+		if (directionNumber == 1) 
 		{
 			currDir = Direction.EAST;
 			this.x += 15;
@@ -79,6 +79,17 @@ public class Bee extends JLabel
 			setVisible(false);
 		}
 	}
+	
+	private boolean hasDamaged = false;
+
+	public boolean hasDamagedLizard() {
+	    return hasDamaged;
+	}
+
+	public void setHasDamaged(boolean damaged) {
+	    this.hasDamaged = damaged;
+	}
+
 	
 	public boolean collidesWith(Lizard lizard)
 	{

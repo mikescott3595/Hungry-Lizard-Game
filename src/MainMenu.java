@@ -60,13 +60,13 @@ public class MainMenu extends JFrame implements ActionListener
         menuButtonsPanel.setLayout(new GridLayout(3, 1));
 
         JButton startButton = new JButton("Start");
-        startButton.setPreferredSize(new Dimension(40, 40));
+        startButton.setPreferredSize(new Dimension(150, 20));
 
         JButton exitButton = new JButton("Exit");
-        exitButton.setPreferredSize(new Dimension(40, 40));
+        exitButton.setPreferredSize(new Dimension(150, 20));
 
         JButton optionsButton = new JButton("Options");
-        optionsButton.setPreferredSize(new Dimension(40, 40));
+        optionsButton.setPreferredSize(new Dimension(150, 20));
 
         // listeners
         startButton.addActionListener(this);

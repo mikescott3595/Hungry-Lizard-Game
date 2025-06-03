@@ -11,7 +11,7 @@ public class Snackaroo
 	 private int flyCounter;
 	 private Fly f;
 
-    /**
+    /** 
      * Constructor for Snackaroo
      * @param rows number of rows in the fly grid
      * @param col number of columns in the fly grid

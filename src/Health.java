@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  * Authors: Michael Scott, Olivia Tom
  * Date: 05/14/2025
  */
-public class Health extends JPanel 
+public class Health extends JPanel
 {
 	// fields
 	private int hearts; // keeps track of how many hearts there should be
@@ -48,6 +48,8 @@ public class Health extends JPanel
 	public void damage()
 	{
 		hearts--;
+		
+		 if (hearts < 0) hearts = 0; // makes sure we can't have negative health 
 		
 		// updates health panel
 		if (hearts == 2)

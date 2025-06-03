@@ -4,8 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Random;
-
 import javax.swing.*;
 
 /**
@@ -47,9 +45,11 @@ public class GamePanel extends JPanel implements KeyListener
         // add lizard to game panel
         this.lizard = new Lizard(400, 550, this);
         this.add(lizard);
+        this.add(lizard.getTongue());
         
         // add health to game panel
         this.add(lizard.getHealthPanel());
+        this.setComponentZOrder(lizard.getTongue(), 0); // tongue at front
         
         this.gang = new Gang();
         this.snackaroo = new Snackaroo();
@@ -61,24 +61,24 @@ public class GamePanel extends JPanel implements KeyListener
             @Override
             public void actionPerformed(ActionEvent e) {
                 ArrayList<Bee> currentBees = gang.getBees();
+
+                // Add new bees to panel
                 while (lastCount < currentBees.size()) {
                     add(currentBees.get(lastCount));
                     lastCount++;
                     repaint();
                 }
-                revalidate(); // make sure Swing re-lays out components
+
+                // Check tongue collision with bees
+                if (lizard.getTongue() != null) {
+                    lizard.getTongue().checkBeeCollision(currentBees);
+                }
+
+                revalidate();
                 repaint();
             }
         });
         beeAdder.start();
-        
-        
-        score = 0; // start at zero
-
-        scoreLabel = new JLabel("Score: " + score);
-        scoreLabel.setBounds(10, 10, 100, 30); // adjust size and position
-        this.add(scoreLabel);
-
         
      // Fly adding mechanism
         Timer flyAdder = new Timer(100, new ActionListener() {
@@ -91,8 +91,14 @@ public class GamePanel extends JPanel implements KeyListener
                     add(currentFlies.get(lastCount));
                     lastCount++;
                     repaint();
+                    
+                    ArrayList<Fly> currentFlies1 = snackaroo.getFlies(); 
+                    for (Fly fly : currentFlies1) {
+                        lizard.getTongue().eatFly(fly);
+                    }
+
                 }
-                revalidate(); // make sure Swing re-lays out components
+                revalidate(); 
                 repaint();
             }
         });
@@ -123,8 +129,16 @@ public class GamePanel extends JPanel implements KeyListener
 
              g2d.dispose(); // clean up
         }
+        
+    }
+    
+    //getter for lizard 
+    public Lizard getLizard() {
+        return lizard;
     }
 
+
+    
     /**
      * handles the score 
      * @param amount
