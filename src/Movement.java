@@ -9,9 +9,13 @@
  * CISC 190 programming challenges
  * 
  * Responsibilities of class:
- * Represents the possible directions a game character or object can move.
+ * Interface for sprite movement
  */
-public enum Direction
+
+public interface Movement
 {
-	NORTH, SOUTH, EAST, WEST
+	/**
+	 * The movement of the sprites that allows them to fly
+	 */
+	void move();
 }

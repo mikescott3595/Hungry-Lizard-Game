@@ -1,13 +1,35 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
-public class GameOverPanel extends JPanel {
+/**
+ * Authors:
+ * @author Olivia Tom
+ * @author Michael Scott
+ * 
+ * References:
+ * ChatGPT
+ * StackOverflow
+ * CISC 190 programming challenges
+ * 
+ * Responsibilities of class:
+ * Panel that manages the outcome of the user losing.
+ */
+public class GameOverPanel extends JPanel 
+{
+	// fields
     private JButton restartButton;
     private JButton exitButton;
     private JLabel gameOverLabel;
 
-    public GameOverPanel(GamePanel gamePanel, JFrame mainFrame) {
+	/*************************************** constructors **************************************/
+    
+    /**
+     * Constructor for a GameOverPanel
+     * @param gamePanel the panel that draws the game
+     * @param mainFrame the frame that holds the panel
+     */
+    public GameOverPanel(GamePanel gamePanel, JFrame mainFrame) 
+    {
         setLayout(new BorderLayout());
 
         // Game over message

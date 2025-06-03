@@ -1,29 +1,41 @@
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.Timer;
-
-import java.util.List;
 import java.util.Random;
-import java.util.ArrayList;
-import java.lang.Object;
 
-public class Bee extends JLabel
+/**
+ * Authors:
+ * 
+ * @author Olivia Tom
+ * @author Michael Scott
+ * 
+ *         References: ChatGPT StackOverflow CISC 190 programming challenges
+ * 
+ *         Responsibilities of class: Is-a Gang. Sprite class with movement
+ *         behavior. Implements Movement. Causes damage if eaten.
+ */
+
+public class Bee extends JLabel implements Movement
 {
+	// fields
 	private int x, y;
 	private boolean isDead;
+	private boolean hasDamaged = false;
 	private ImageIcon beeImage = new ImageIcon("bee.png");;
 	private int moveCount;
 	private Direction currDir;
 	JLabel label;
 	Random rand = new Random();
 	private int width, height;
-	
-	///Constructors///
+
+	/*************************************** constructors **************************************/
+	/**
+	 * Constructor for a Bee
+	 * 
+	 * @param x x coordinate for a Bee
+	 * @param y y coordinate for a Bee
+	 */
 	public Bee(int x, int y)
 	{
 		width = beeImage.getIconWidth();
@@ -35,88 +47,113 @@ public class Bee extends JLabel
 		this.isDead = false;
 		this.currDir = Direction.WEST; // default direction
 	}
-	
-	
+
+	/*************************************** methods **************************************/
+
 	/**
-	 * this method handles bee movement 
+	 * this method handles bee movement
 	 */
-	public void move()
-	{
+	public void move() {
 		int directionNumber = rand.nextInt(4);
-		 
-		if (directionNumber == 0)
-		{
+
+		if (directionNumber == 0) {
 			currDir = Direction.NORTH;
 			this.y += 15;
 		}
-		if (directionNumber == 1) 
-		{
+		if (directionNumber == 1) {
 			currDir = Direction.EAST;
 			this.x += 15;
 		}
-		if (directionNumber == 2)
-		{
+		if (directionNumber == 2) {
 			currDir = Direction.SOUTH;
 			this.y -= 15;
-		}
-		else
-		{
+		} else {
 			currDir = Direction.WEST;
 			this.x -= 20;
 		}
 
 		this.setLocation(x, y);
 		this.repaint();
-		
-		if (x < 800)
-		{
+
+		if (x < 800) {
 			Timer t = new Timer(100, e -> move());
 			t.setRepeats(false);
 			t.start();
-		}
-		else
-		{
+		} else {
 			setVisible(false);
 		}
 	}
-	
-	private boolean hasDamaged = false;
 
+	/**
+	 * Checks if lizard has taken damage
+	 * 
+	 * @return hasDamaged lizard is or isnt damaged
+	 */
 	public boolean hasDamagedLizard() {
-	    return hasDamaged;
+		return hasDamaged;
 	}
 
+	/**
+	 * Sets the state of if Lizard has been damaged
+	 * 
+	 * @param damaged damage state
+	 */
 	public void setHasDamaged(boolean damaged) {
-	    this.hasDamaged = damaged;
+		this.hasDamaged = damaged;
 	}
 
-	
-	public boolean collidesWith(Lizard lizard)
-	{
+	/**
+	 * Collision between Lizard and a Bee
+	 * 
+	 * @param lizard
+	 * @return the intersection of Lizard and Bee
+	 */
+	public boolean collidesWith(Lizard lizard) {
 		return getBounds().intersects(lizard.getBounds());
 	}
-	
-	public boolean isDead()
-	{
+
+	/**
+	 * Returns of state of a Bee being alive or not
+	 * 
+	 * @return isDead bee life state
+	 */
+	public boolean isDead() {
 		return isDead;
 	}
-	
-	public void setDead(boolean dead)
-	{
+
+	/**
+	 * Sets the state of a Bee being alive or not
+	 * 
+	 * @param dead kills bee
+	 */
+	public void setDead(boolean dead) {
 		isDead = dead;
 	}
-	
-	public Rectangle getBounds()
-	{
+
+	/**
+	 * Returns the bounds of the rectangle encapsulating a Bee
+	 * 
+	 * @return rectangle bounds
+	 */
+	public Rectangle getBounds() {
 		return new Rectangle(x, y, width, height);
 	}
-	
-	public int getX() 
-	{ 
-		return x; 
+
+	/**
+	 * Returns x coordinate of bee
+	 * 
+	 * @return x bee x coordinate
+	 */
+	public int getX() {
+		return x;
 	}
-	public int getY() 
-	{ 
-		return y; 
+
+	/**
+	 * Returns the y coordinate of a bee
+	 * 
+	 * @return y bee y coordinate
+	 */
+	public int getY() {
+		return y;
 	}
 }

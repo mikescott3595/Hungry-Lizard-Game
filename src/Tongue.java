@@ -1,157 +1,139 @@
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-<<<<<<< HEAD
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
-
-=======
->>>>>>> refs/remotes/origin/main
 import java.awt.Rectangle;
 import java.util.List;
 
-<<<<<<< HEAD
 /**
- * This is a Project called Hungry Lizard Game. It's based off of the game Galaga
- * Authors: Michael Scott, Olivia Tom
- * Date: 05/14/2025
+ * Authors:
+ * 
+ * @author Olivia Tom
+ * @author Michael Scott
+ * 
+ *         References: ChatGPT StackOverflow CISC 190 programming challenges
+ * 
+ *         Responsibilities of class: Represents the lizard's tongue action
+ *         (attack or grabbing). Should handle extension, collision detection
+ *         with insects, and retraction.
  */
-=======
->>>>>>> refs/remotes/origin/main
+
 public class Tongue extends JLabel
 {
+	// fields
 	private static final long serialVersionUID = 1L;
+	private Boolean isTongueExtended;
+	private ImageIcon tongue = new ImageIcon("tongue.png");
+	private Rectangle bounds;
+	private int x;
+	private int y;
+	private GamePanel gamePanel;
+	private boolean hasAlreadyHit = false;
 
-    private Boolean isTongueExtended;
-    private ImageIcon tongueImage = new ImageIcon("tongue.png");
-    private int x;
-    private int y;
-<<<<<<< HEAD
-    private int width, height;
-    private Rectangle bounds;
-=======
-    private GamePanel gamePanel;
-    private boolean hasAlreadyHit = false;
+	/*************************************** constructors **************************************/
+	
+	/**
+	 * Constructor for a Tongue
+	 * @param startX x coordinate value
+	 * @param startY y coordinate value
+	 * @param panel the game
+	 */
+	public Tongue(int startX, int startY, GamePanel panel)
+	{
+		this.isTongueExtended = false;
+		this.bounds = new Rectangle(startX + 15, startY - 40, 10, 40);
+		this.gamePanel = panel;
 
->>>>>>> refs/remotes/origin/main
+		// Make this JLabel visible
+		this.setIcon(tongue);
+		this.setBounds(startX + 15, startY - 40, 10, 40);
+		this.setVisible(false); // hidden initially
+		System.out.println("Tongue image width: " + tongue.getIconWidth());
+	}
 
-    public Tongue(int x, int y) 
-    {
-	   width = tongueImage.getIconWidth();
-	   height = tongueImage.getIconHeight();
-	   this.x = x;
-	   this.y = y;
-	   bounds = new Rectangle(x, y, width, height);
-	   this.setIcon(tongueImage);
-	   this.setBounds(x, y, width, height);
-        this.isTongueExtended = false;
-<<<<<<< HEAD
-        this.setVisible(false);
-=======
-        this.bounds = new Rectangle(startX + 15, startY - 40, 10, 40);
-        this.gamePanel = panel;
+	/*************************************** methods **************************************/
+	
+	/**
+	 * Extends the Tongue for a Lizard
+	 * @param lizardx x coordinate value
+	 * @param lizardy y coordinate value
+	 */
+	public void extendedTongue(int lizardx, int lizardy) {
+		isTongueExtended = true;
+		this.x = lizardx;
+		this.y = lizardy;
+		hasAlreadyHit = false;
 
-        //  Make this JLabel visible
-        this.setIcon(tongue);
-        this.setBounds(startX + 15, startY - 40, 10, 40);
-        this.setVisible(false); // hidden initially
-        System.out.println("Tongue image width: " + tongue.getIconWidth());
->>>>>>> refs/remotes/origin/main
-    }
+		int tongueX = x + (40 / 2) - (10 / 2);
 
-    public void extendedTongue(int lizardx, int lizardy)
-    {
-<<<<<<< HEAD
-	    isTongueExtended = true;
-	    this.setLocation(lizardx, lizardy);
-	    this.setVisible(true);
+		int tongueHeight = 550;
+		int tongueY = y - tongueHeight + 40;
 
-	    Timer retract = new Timer(150, e -> {
-	        isTongueExtended = false;
-	        this.setVisible(false);
-	    });
-	    retract.setRepeats(false);
-	    retract.start();
-=======
-        isTongueExtended = true;
-        this.x = lizardx;
-        this.y = lizardy;
-        hasAlreadyHit = false; 
+		bounds.setBounds(tongueX, tongueY, 10, tongueHeight);
+		this.setBounds(tongueX, tongueY, 10, tongueHeight);
 
-        
-        int tongueX = x + (40 / 2) - (10 / 2);
+		this.setVisible(true);
 
-       
-        int tongueHeight = 550; 
-        int tongueY = y - tongueHeight + 40; 
+		System.out.println("Tongue positioned at: " + tongueX + ", " + tongueY + ", height: " + tongueHeight);
+	}
 
-      
-        bounds.setBounds(tongueX, tongueY, 10, tongueHeight);
-        this.setBounds(tongueX, tongueY, 10, tongueHeight);
+	/**
+	 * Retracts the Tongue for a Lizard
+	 */
+	public void retractedTongue() {
+		isTongueExtended = false;
+		this.setVisible(false); // hide it
+	}
 
-        this.setVisible(true);
+	/**
+	 * Returns the bounds of the rectangle encapsulating the Tongue
+	 * @return bounds rectangle bounds
+	 */
+	public Rectangle getBounds() {
+		return bounds;
+	}
 
-        System.out.println("Tongue positioned at: " + tongueX + ", " + tongueY + ", height: " + tongueHeight);
->>>>>>> refs/remotes/origin/main
-    }
-<<<<<<< HEAD
-    
-    public void setTongueLocation(int x, int y)
-=======
+	/**
+	 * Tongue collides with fly to eat it
+	 * @param fly fly
+	 * @return if fly was eaten or not
+	 */
+	public boolean eatFly(Fly fly) {
+		if (isTongueExtended && !fly.isEaten() && bounds.intersects(fly.getBounds())) {
+			fly.setEaten(true);
 
-    public void retractedTongue()
->>>>>>> refs/remotes/origin/main
-    {
-<<<<<<< HEAD
-        this.setLocation(x, y);
-        this.repaint();
-=======
-        isTongueExtended = false;
-        this.setVisible(false); //  hide it
->>>>>>> refs/remotes/origin/main
-    }
+			if (gamePanel != null) {
+				gamePanel.increaseScore(10);
+			}
+			return true;
+		}
+		return false;
+	}
 
-    public Rectangle getBounds()
-    {
-        return bounds;
-    }
+	/**
+	 * Tongue collides with bee to eat it
+	 * @param bee bee colliding with tongue
+	 */
+	public void checkBeeCollision(List<Bee> bees) {
+		if (isTongueExtended && !hasAlreadyHit) {
+			for (Bee bee : bees) {
+				if (bounds.intersects(bee.getBounds())) {
+					if (gamePanel != null && gamePanel.getLizard() != null) {
+						gamePanel.getLizard().takeDamage();
+						gamePanel.checkGameOver();
+						bee.setHasDamaged(true);
+						hasAlreadyHit = true;
+						System.out.println("Ouch! The lizard took damage!");
+					}
+				}
+			}
+		}
+	}
 
-    public boolean eatFly(Fly fly) {
-<<<<<<< HEAD
-     	if (isTongueExtended && !fly.isEaten() && getBounds().intersects(fly.getBounds())) {
-     	        fly.setEaten(true);
-     	        return true;
-     	    }
-     	    return false;
-=======
-        if (isTongueExtended && !fly.isEaten() && bounds.intersects(fly.getBounds())) {
-            fly.setEaten(true);
-
-            if (gamePanel != null) {
-                gamePanel.increaseScore(10);
-            }
-            return true;
-        }
-        return false;
->>>>>>> refs/remotes/origin/main
-    }
-
-    public void checkBeeCollision(List<Bee> bees) {
-        if (isTongueExtended && !hasAlreadyHit) {
-            for (Bee bee : bees) {
-                if (bounds.intersects(bee.getBounds())) {
-                    if (gamePanel != null && gamePanel.getLizard() != null) {
-                        gamePanel.getLizard().takeDamage();
-                        gamePanel.checkGameOver();
-                        bee.setHasDamaged(true);
-                        hasAlreadyHit = true;
-                        System.out.println("Ouch! The lizard took damage!");
-                    }
-                }
-            }
-        }
-    }
-
-    public boolean isExtended()
-    {
-        return isTongueExtended;
-    }
+	/**
+	 * Returns state of tongue if it's extended or not
+	 * @return state of tongue
+	 */
+	public boolean isExtended() {
+		return isTongueExtended;
+	}
 }
