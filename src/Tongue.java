@@ -1,4 +1,7 @@
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.Timer;
+
 import java.awt.Rectangle;
 
 /**
@@ -6,51 +9,60 @@ import java.awt.Rectangle;
  * Authors: Michael Scott, Olivia Tom
  * Date: 05/14/2025
  */
-public class Tongue 
+public class Tongue extends JLabel
 {
     private Boolean isTongueExtended;
-    private ImageIcon tongue = new ImageIcon("tongue.png");
-    private Rectangle bounds;
+    private ImageIcon tongueImage = new ImageIcon("tongue.png");
     private int x;
     private int y;
-    private GamePanel gamePanel;
+    private int width, height;
+    private Rectangle bounds;
 
-    public Tongue(int startX, int startY, GamePanel panel) {
+    public Tongue(int x, int y) 
+    {
+	   width = tongueImage.getIconWidth();
+	   height = tongueImage.getIconHeight();
+	   this.x = x;
+	   this.y = y;
+	   bounds = new Rectangle(x, y, width, height);
+	   this.setIcon(tongueImage);
+	   this.setBounds(x, y, width, height);
         this.isTongueExtended = false;
-        this.bounds = new Rectangle(startX, startY - 40, 10, 40);
-        this.gamePanel = panel; // 💡 Store the reference to update score
+        this.setVisible(false);
     }
 
     
     
     public void extendedTongue(int lizardx, int lizardy)
     {
-        isTongueExtended = true;
-        this.x = lizardx;
-        this.y = lizardy;
-        bounds.setLocation(x + 15, y - 40); // this is just a test point 
+	    isTongueExtended = true;
+	    this.setLocation(lizardx, lizardy);
+	    this.setVisible(true);
+
+	    Timer retract = new Timer(150, e -> {
+	        isTongueExtended = false;
+	        this.setVisible(false);
+	    });
+	    retract.setRepeats(false);
+	    retract.start();
     }
     
-    public void retractedTongue()
+    public void setTongueLocation(int x, int y)
     {
-        isTongueExtended = false;
+        this.setLocation(x, y);
+        this.repaint();
     }
     public Rectangle getBounds()
     {
         return bounds;
     }
 
-    // method for eating flies
     public boolean eatFly(Fly fly) {
-        if (isTongueExtended && !fly.isEaten() && bounds.intersects(fly.getBounds())) {
-            fly.setEaten(true);
-            
-            if (gamePanel != null) {
-                gamePanel.increaseScore(10);
-            }
-            return true;
-        }
-        return false;
+     	if (isTongueExtended && !fly.isEaten() && getBounds().intersects(fly.getBounds())) {
+     	        fly.setEaten(true);
+     	        return true;
+     	    }
+     	    return false;
     }
 
 

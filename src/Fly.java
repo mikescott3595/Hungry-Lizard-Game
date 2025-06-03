@@ -75,10 +75,10 @@ public class Fly extends JLabel
     }
 
 
-//    public void setEaten(boolean eaten) {
-//        this.isEaten = eaten;
-//        flyLabel.setVisible(!eaten);
-//    }
+    public void setEaten(boolean eaten) {
+        this.isEaten = eaten;
+        this.setVisible(!eaten);
+    }
 
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
