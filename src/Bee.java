@@ -87,7 +87,7 @@ public class Bee extends JLabel implements Movement
 	/**
 	 * Checks if lizard has taken damage
 	 * 
-	 * @return hasDamaged lizard is or isnt damaged
+	 * @return hasDamaged lizard is or isn't damaged
 	 */
 	public boolean hasDamagedLizard() {
 		return hasDamaged;

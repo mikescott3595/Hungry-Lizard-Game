@@ -82,8 +82,8 @@ public class Gang
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Gets the Bee count 
+	 * @return the count of the bees 
 	 */
 	public int getBeeCount() 
 	{

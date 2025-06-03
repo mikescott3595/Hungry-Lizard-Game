@@ -34,7 +34,7 @@ public class ScoreBoard
 													// placeholder
 
 		scorePanel = new JPanel();
-		scorePanel.add(scoreLabel);
+		scorePanel.add(scoreLabel); 
 	}
 
 	/*************************************** methods **************************************/

@@ -13,5 +13,5 @@
  */
 public class Options extends MainMenu
 {
-
+   // we plan to add something here in the future
 }
